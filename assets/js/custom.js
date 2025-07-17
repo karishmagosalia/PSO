@@ -11,15 +11,18 @@
 
 
 	$(window).scroll(function() {
-	  var scroll = $(window).scrollTop();
-	  var box = $('.header-text').height();
-	  var header = $('header').height();
+  var $window = $(window);
+  var $headerText = $('.header-text');
+  var $header = $('header');
+  var scroll = $window.scrollTop();
+  var boxHeight = $headerText.length ? $headerText[0].offsetHeight : 0;
+  var headerHeight = $header.length ? $header[0].offsetHeight : 0;
 
-	  if (scroll >= box - header) {
-		$("header").addClass("background-header");
-	  } else {
-		$("header").removeClass("background-header");
-	  }
+  if (scroll >= boxHeight - headerHeight) {
+	$header.addClass("background-header");
+  } else {
+	$header.removeClass("background-header");
+  }
 	})
 
 	$('.owl-banner').owlCarousel({
@@ -106,19 +109,21 @@
 	// Menu elevator animation
 	$('.scroll-to-section a[href*=\\#]:not([href=\\#])').on('click', function() {
 		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-			var target = $(this.hash);
-			target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-			if (target.length) {
-				var width = $(window).width();
-				if(width < 991) {
-					$('.menu-trigger').removeClass('active');
-					$('.header-area .nav').slideUp(200);	
-				}				
-				$('html,body').animate({
-					scrollTop: (target.offset().top) - 80
-				}, 700);
-				return false;
-			}
+	var $target = $(this.hash);
+	$target = $target.length ? $target : $('[name=' + this.hash.slice(1) +']');
+	if ($target.length) {
+		var width = window.innerWidth;
+		if(width < 991) {
+			$('.menu-trigger').removeClass('active');
+			$('.header-area .nav').slideUp(200);    
+		}
+		// Cache offset value to avoid forced reflow during animation
+		var targetOffset = $target[0].getBoundingClientRect().top + window.pageYOffset - 80;
+		$('html,body').animate({
+			scrollTop: targetOffset
+		}, 700);
+		return false;
+	}
 		}
 	});
 
