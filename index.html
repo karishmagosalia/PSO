@@ -2,6 +2,16 @@
 <html lang="en">
 
   <head>
+    <!-- Preload main CSS -->
+    <link rel="preload" as="style" href="assets/css/bootstrap.min.css">
+    <link rel="preload" as="style" href="assets/css/templatemo-villa-agency.min.css">
+    <link rel="preload" as="style" href="assets/css/fontawesome.min.css">
+    <link rel="preload" as="style" href="assets/css/fontawesome-font-display-swap.css">
+    <!-- Preload main fonts -->
+    <link rel="preload" as="font" href="assets/webfonts/Poppins-Regular.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href="assets/webfonts/Poppins-Bold.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href="assets/webfonts/fa-brands-400.woff2" type="font/woff2" crossorigin>
+    <link rel="preload" as="font" href="assets/webfonts/fa-solid-900.woff2" type="font/woff2" crossorigin>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,7 +48,10 @@
     <link rel="stylesheet" href="assets/css/fontawesome-font-display-swap.css">
     <link rel="stylesheet" href="assets/css/templatemo-villa-agency.min.css">
     <link rel="stylesheet" href="assets/css/owl-carousel.css">
-     <!--/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"/> */-->
+    <!-- Defer non-critical CSS (Owl Carousel) -->
+    <link rel="stylesheet" href="assets/css/owl-carousel.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="assets/css/owl-carousel.css"></noscript>
+    <!--/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"/> */-->
     <!--/* <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/> */-->
 <!--
 
