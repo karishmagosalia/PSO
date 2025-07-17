@@ -5,63 +5,40 @@
 	// Page loading animation
 	$(window).on('load', function() {
 
-		$('#js-preloader').addClass('loaded');
+        $('#js-preloader').addClass('loaded');
 
-	});
+    });
 
 
 	$(window).scroll(function() {
-  var $window = $(window);
-  var $headerText = $('.header-text');
-  var $header = $('header');
-  var scroll = $window.scrollTop();
-  var boxHeight = $headerText.length ? $headerText[0].offsetHeight : 0;
-  var headerHeight = $header.length ? $header[0].offsetHeight : 0;
+	  var scroll = $(window).scrollTop();
+	  var box = $('.header-text').height();
+	  var header = $('header').height();
 
-  if (scroll >= boxHeight - headerHeight) {
-	$header.addClass("background-header");
-  } else {
-	$header.removeClass("background-header");
-  }
+	  if (scroll >= box - header) {
+	    $("header").addClass("background-header");
+	  } else {
+	    $("header").removeClass("background-header");
+	  }
 	})
 
 	$('.owl-banner').owlCarousel({
 	  center: true,
-	  items:1,
-	  loop:true,
-	  nav: true,
+      items:1,
+      loop:true,
+      nav: true,
 	  dots:true,
 	  navText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'],
-	  margin:30,
-	  responsive:{
-		992:{
-			items:1
-		},
+      margin:30,
+      responsive:{
+        992:{
+            items:1
+        },
 		1200:{
 			items:1
 		}
-	  }
+      }
 	});
-
-	// Add accessible names to Owl Carousel nav and dot buttons
-	setTimeout(function() {
-	  // Nav buttons
-	  $(".owl-banner .owl-nav .owl-prev").attr({
-		'aria-label': 'Previous Slide',
-		'title': 'Previous Slide'
-	  });
-	  $(".owl-banner .owl-nav .owl-next").attr({
-		'aria-label': 'Next Slide',
-		'title': 'Next Slide'
-	  });
-	  // Dot buttons
-	  $(".owl-banner .owl-dots .owl-dot").each(function(idx){
-		$(this).attr({
-		  'aria-label': 'Go to slide ' + (idx+1),
-		  'title': 'Go to slide ' + (idx+1)
-		});
-	  });
-	}, 500);
 
 	var width = $(window).width();
 		$(window).resize(function() {
@@ -109,21 +86,19 @@
 	// Menu elevator animation
 	$('.scroll-to-section a[href*=\\#]:not([href=\\#])').on('click', function() {
 		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-	var $target = $(this.hash);
-	$target = $target.length ? $target : $('[name=' + this.hash.slice(1) +']');
-	if ($target.length) {
-		var width = window.innerWidth;
-		if(width < 991) {
-			$('.menu-trigger').removeClass('active');
-			$('.header-area .nav').slideUp(200);    
-		}
-		// Cache offset value to avoid forced reflow during animation
-		var targetOffset = $target[0].getBoundingClientRect().top + window.pageYOffset - 80;
-		$('html,body').animate({
-			scrollTop: targetOffset
-		}, 700);
-		return false;
-	}
+			var target = $(this.hash);
+			target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+			if (target.length) {
+				var width = $(window).width();
+				if(width < 991) {
+					$('.menu-trigger').removeClass('active');
+					$('.header-area .nav').slideUp(200);	
+				}				
+				$('html,body').animate({
+					scrollTop: (target.offset().top) - 80
+				}, 700);
+				return false;
+			}
 		}
 	});
 
@@ -145,7 +120,7 @@
 			}, 300);
 		});
 	});
-	
+    
 
 
 })(window.jQuery);
