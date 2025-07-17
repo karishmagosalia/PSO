@@ -5,9 +5,9 @@
 	// Page loading animation
 	$(window).on('load', function() {
 
-        $('#js-preloader').addClass('loaded');
+		$('#js-preloader').addClass('loaded');
 
-    });
+	});
 
 
 	$(window).scroll(function() {
@@ -16,29 +16,49 @@
 	  var header = $('header').height();
 
 	  if (scroll >= box - header) {
-	    $("header").addClass("background-header");
+		$("header").addClass("background-header");
 	  } else {
-	    $("header").removeClass("background-header");
+		$("header").removeClass("background-header");
 	  }
 	})
 
 	$('.owl-banner').owlCarousel({
 	  center: true,
-      items:1,
-      loop:true,
-      nav: true,
+	  items:1,
+	  loop:true,
+	  nav: true,
 	  dots:true,
 	  navText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'],
-      margin:30,
-      responsive:{
-        992:{
-            items:1
-        },
+	  margin:30,
+	  responsive:{
+		992:{
+			items:1
+		},
 		1200:{
 			items:1
 		}
-      }
+	  }
 	});
+
+	// Add accessible names to Owl Carousel nav and dot buttons
+	setTimeout(function() {
+	  // Nav buttons
+	  $(".owl-banner .owl-nav .owl-prev").attr({
+		'aria-label': 'Previous Slide',
+		'title': 'Previous Slide'
+	  });
+	  $(".owl-banner .owl-nav .owl-next").attr({
+		'aria-label': 'Next Slide',
+		'title': 'Next Slide'
+	  });
+	  // Dot buttons
+	  $(".owl-banner .owl-dots .owl-dot").each(function(idx){
+		$(this).attr({
+		  'aria-label': 'Go to slide ' + (idx+1),
+		  'title': 'Go to slide ' + (idx+1)
+		});
+	  });
+	}, 500);
 
 	var width = $(window).width();
 		$(window).resize(function() {
@@ -120,7 +140,7 @@
 			}, 300);
 		});
 	});
-    
+	
 
 
 })(window.jQuery);
